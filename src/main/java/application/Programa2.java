@@ -9,17 +9,10 @@ import dominio.Pessoa;
 public class Programa2 {
 
 	public static void main(String[] args) {
-		Pessoa p1 = new Pessoa(null, "Carlos da Silva","carlosOBrabo@gmail.com");
-		Pessoa p2 = new Pessoa(null, "Mariana Costa","mari@gmail.com");
-		Pessoa p3 = new Pessoa(null, "Giovanna","giovannaMonoTeemo@gmail.com");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa"); 
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(p1);
-		em.persist(p2);
-		em.persist(p3);
-		em.getTransaction().commit();
-		System.out.println("Finished!");
+		Pessoa p = em.find(Pessoa.class, 1);
+		System.out.println("Done!Person found:\n"+p);
 		em.close();
 		emf.close();
 	}
